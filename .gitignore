@@ -91,3 +91,6 @@ bin/
 .env.*.local
 tmp/
 temp/
+
+# ===== Learning spikes (ephemeral, not for main) =====
+spike/
