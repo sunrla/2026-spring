@@ -26,6 +26,9 @@ export type ProductCategory =
   | 'mask'
   | 'other';
 
+export type ProductDataSource = 'sample' | 'manual';
+export type ProductVerificationStatus = 'needs-user-review' | 'user-entered';
+
 export type Product = {
   id: string;
   name: string;
@@ -34,6 +37,9 @@ export type Product = {
   ingredientText: string;
   frequency: string;
   createdAt: string;
+  dataSource?: ProductDataSource;
+  verificationStatus?: ProductVerificationStatus;
+  catalogProductId?: string;
 };
 
 export type IngredientTag =

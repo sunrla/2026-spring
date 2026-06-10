@@ -12,7 +12,7 @@ export const productCategoryOptions: Array<{ value: ProductCategory; label: stri
   { value: 'cleanser', label: '클렌저' },
   { value: 'toner', label: '토너/미스트' },
   { value: 'serum', label: '세럼/앰플' },
-  { value: 'moisturizer', label: '보습제' },
+  { value: 'moisturizer', label: '보습제/크림' },
   { value: 'sunscreen', label: '선케어' },
   { value: 'mask', label: '마스크/팩' },
   { value: 'other', label: '기타' },
