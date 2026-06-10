@@ -50,9 +50,24 @@ export type IngredientTag =
   | 'preservative'
   | 'potential-irritation-caution';
 
+export type IngredientCautionLevel = 'low' | 'medium' | 'caution';
+export type IngredientEvidenceStatus = 'demo-rule';
+
 export type ParsedIngredient = {
   name: string;
   tags: IngredientTag[];
+};
+
+export type IngredientTagExplanation = {
+  tag: IngredientTag;
+  labelKo: string;
+  shortDescriptionKo: string;
+  routineMeaningKo: string;
+  cautionLevel: IngredientCautionLevel;
+  evidenceStatus: IngredientEvidenceStatus;
+  sourceLabel: 'MVP 데모 룰';
+  disclaimerKo: string;
+  matchedIngredients: string[];
 };
 
 export type WeeklyLog = {

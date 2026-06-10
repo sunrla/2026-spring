@@ -4,12 +4,13 @@ import { useEffect, useMemo, useState } from 'react';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { IngredientTagExplanation } from '@/components/IngredientTagExplanation';
 import { Input } from '@/components/ui/Input';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { Textarea } from '@/components/ui/Textarea';
 import { tagLabels } from '@/data/ingredientRules';
 import { productCatalog, type CatalogProduct } from '@/data/productCatalog';
-import { parseIngredientText } from '@/lib/ingredients';
+import { getIngredientTagExplanations, parseIngredientText } from '@/lib/ingredients';
 import { frequencyOptions, productCategoryOptions } from '@/lib/options';
 import { makeId, readLocal, storageKeys, writeLocal } from '@/lib/storage';
 import type {
@@ -56,6 +57,10 @@ export default function ProductsPage() {
 
   const parsedIngredients = useMemo(() => parseIngredientText(form.ingredientText), [form.ingredientText]);
   const parsedTags = Array.from(new Set(parsedIngredients.flatMap((ingredient) => ingredient.tags)));
+  const tagExplanations = useMemo(
+    () => getIngredientTagExplanations(form.ingredientText),
+    [form.ingredientText],
+  );
   const canSave = form.name.trim() && form.brand.trim() && form.ingredientText.trim();
 
   const catalogMatches = useMemo(() => {
@@ -256,6 +261,16 @@ export default function ProductsPage() {
                   </Badge>
                 ))
               )}
+            </div>
+
+            <div className="mt-5">
+              <p className="text-sm font-bold text-slate-700">성분 태그 설명</p>
+              <div className="mt-3">
+                <IngredientTagExplanation
+                  explanations={tagExplanations}
+                  emptyMessage="성분을 입력하면 어떤 성분이 어떤 태그를 만들었는지 설명 카드가 표시됩니다."
+                />
+              </div>
             </div>
 
             <div className="mt-5 flex flex-wrap gap-2">
