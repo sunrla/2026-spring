@@ -91,3 +91,22 @@ export type RoutineRiskResult = {
   explanations: string[];
   cautionTags: IngredientTag[];
 };
+
+export type RecommendationStep = {
+  title: string;
+  description: string;
+  reason: string;
+  relatedSignals: string[];
+};
+
+export type RoutineRecommendation = {
+  dataCompletenessScore: number;
+  basisSummary: string[];
+  morningRoutine: RecommendationStep[];
+  eveningRoutine: RecommendationStep[];
+  avoidList: RecommendationStep[];
+  observationPlan: string[];
+  reasonSummary: string;
+  safetyNote: string;
+  generatedAt: string;
+};

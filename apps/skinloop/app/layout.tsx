@@ -13,7 +13,7 @@ const navItems = [
   { href: '/survey', label: '설문' },
   { href: '/products', label: '제품 등록' },
   { href: '/analysis', label: '루틴 분석' },
-  { href: '/recommendation', label: '추천 Mock' },
+  { href: '/recommendation', label: '루틴 추천' },
   { href: '/logs', label: '주간 기록' },
   { href: '/dashboard', label: '대시보드' },
   { href: '/admin', label: '브랜드 인사이트' },
