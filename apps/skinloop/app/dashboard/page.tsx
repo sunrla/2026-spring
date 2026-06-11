@@ -19,6 +19,10 @@ function trendText(values: number[]) {
   return '유지 흐름';
 }
 
+function sortLogsForTrend(logs: WeeklyLog[]) {
+  return [...logs].sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+}
+
 export default function DashboardPage() {
   const [logs, setLogs] = useState<WeeklyLog[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
@@ -29,7 +33,7 @@ export default function DashboardPage() {
   }, []);
 
   const usingSampleData = logs.length === 0;
-  const logsForView = useMemo(() => (usingSampleData ? sampleLogs : [...logs].reverse()), [logs, usingSampleData]);
+  const logsForView = useMemo(() => (usingSampleData ? sampleLogs : sortLogsForTrend(logs)), [logs, usingSampleData]);
   const skinScores = logsForView.map(skinScoreForLog);
   const irritationScores = logsForView.map((log) => log.irritationScore);
   const consistency = Math.min(100, Math.round((logsForView.length / 4) * 100));
@@ -75,7 +79,7 @@ export default function DashboardPage() {
         </Card>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="grid gap-6 lg:grid-cols-3">
         <Card>
           <h2 className="text-xl font-black text-loop-ink">스킨 점수 흐름</h2>
           <div className="mt-5 space-y-3">
@@ -86,6 +90,24 @@ export default function DashboardPage() {
                   <div className="h-full rounded-md bg-loop-leaf" style={{ width: `${Math.min(100, score)}%` }} />
                 </div>
                 <span className="text-right text-sm font-black text-loop-ink">{score}</span>
+              </div>
+            ))}
+          </div>
+        </Card>
+
+        <Card>
+          <h2 className="text-xl font-black text-loop-ink">자극감 흐름</h2>
+          <p className="mt-3 text-sm leading-6 text-slate-600">
+            낮아지는 흐름은 루틴 관찰에서 참고할 수 있는 신호입니다.
+          </p>
+          <div className="mt-5 space-y-3">
+            {irritationScores.map((score, index) => (
+              <div key={`${score}-${index}`} className="grid grid-cols-[72px_1fr_48px] items-center gap-3">
+                <span className="text-sm font-semibold text-slate-500">{index + 1}주차</span>
+                <div className="h-4 rounded-md bg-slate-100">
+                  <div className="h-full rounded-md bg-amber-400" style={{ width: `${Math.min(100, score * 20)}%` }} />
+                </div>
+                <span className="text-right text-sm font-black text-loop-ink">{score}/5</span>
               </div>
             ))}
           </div>

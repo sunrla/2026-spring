@@ -4,6 +4,7 @@ export type SkinGoal =
   | 'balance'
   | 'hydration'
   | 'calm'
+  | 'barrierCalm'
   | 'texture'
   | 'routine';
 

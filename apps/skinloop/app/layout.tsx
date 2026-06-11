@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { DemoDataControls } from '@/components/DemoDataControls';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -34,9 +35,12 @@ export default function RootLayout({
                 <Link href="/" className="text-xl font-black tracking-normal text-loop-ink">
                   SkinLoop
                 </Link>
-                <p className="text-sm font-semibold text-slate-500">
-                  루틴 실험 기록 · 제품 핏 참고 · 진단 아님
-                </p>
+                <div className="flex flex-col gap-2 sm:items-end">
+                  <p className="text-sm font-semibold text-slate-500">
+                    루틴 실험 기록 · 제품 핏 참고 · 진단 아님
+                  </p>
+                  <DemoDataControls compact />
+                </div>
               </div>
               <nav className="flex gap-2 overflow-x-auto pb-1">
                 {navItems.map((item) => (

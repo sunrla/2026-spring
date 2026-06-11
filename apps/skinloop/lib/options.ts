@@ -4,6 +4,7 @@ export const skinGoalOptions: Array<{ value: SkinGoal; label: string }> = [
   { value: 'balance', label: '유수분 균형' },
   { value: 'hydration', label: '건조감 관찰' },
   { value: 'calm', label: '자극감 관찰' },
+  { value: 'barrierCalm', label: '장벽 안정과 자극감 관찰' },
   { value: 'texture', label: '피부결 관리' },
   { value: 'routine', label: '꾸준한 루틴 만들기' },
 ];

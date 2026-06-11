@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { DemoDataControls } from '@/components/DemoDataControls';
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { SectionHeader } from '@/components/ui/SectionHeader';
@@ -19,6 +20,15 @@ const featureCards = [
 ];
 
 const steps = ['설문 저장', '제품 등록', '성분 태그 확인', '루틴 위험도 참고', '주간 기록'];
+
+const presentationFlow = [
+  '데모 데이터 채우기',
+  '제품 등록에서 성분 태그 확인',
+  '루틴 분석에서 위험도 참고 확인',
+  '루틴 추천에서 입력 기반 추천 확인',
+  '대시보드에서 4주 변화 확인',
+  '브랜드 인사이트에서 사업성 설명',
+];
 
 export default function HomePage() {
   return (
@@ -49,6 +59,12 @@ export default function HomePage() {
             >
               제품 등록하기
             </Link>
+          </div>
+          <div className="mt-6">
+            <p className="text-sm leading-6 text-slate-600">
+              발표 시에는 데모 데이터 채우기를 누르면 설문, 제품, 주간 로그, 추천 화면을 바로 확인할 수 있습니다.
+            </p>
+            <DemoDataControls className="mt-3" />
           </div>
         </div>
 
@@ -101,6 +117,30 @@ export default function HomePage() {
             </Card>
           ))}
         </div>
+      </section>
+
+      <section>
+        <Card>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <Badge tone="blue">Demo guide</Badge>
+              <h2 className="mt-3 text-xl font-black text-loop-ink">추천 발표 흐름</h2>
+            </div>
+            <p className="max-w-xl text-sm leading-6 text-slate-600">
+              아래 순서로 이동하면 SkinLoop의 로컬 MVP 흐름을 짧게 보여줄 수 있습니다.
+            </p>
+          </div>
+          <ol className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            {presentationFlow.map((item, index) => (
+              <li key={item} className="flex gap-3 rounded-md bg-slate-50 p-3 text-sm font-semibold text-slate-700">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-white text-xs font-black text-loop-leaf ring-1 ring-slate-200">
+                  {index + 1}
+                </span>
+                {item}
+              </li>
+            ))}
+          </ol>
+        </Card>
       </section>
     </div>
   );
