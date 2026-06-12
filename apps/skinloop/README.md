@@ -94,6 +94,29 @@ npm run typecheck
 npm run build
 ```
 
+## GitHub Pages Deployment
+
+Expected deployed URL:
+
+```text
+https://sunrla.github.io/2026-spring/
+```
+
+Local development still runs without the `/2026-spring` path:
+
+```bash
+cd apps/skinloop
+npm run dev
+```
+
+The GitHub Pages workflow builds the app with:
+
+```bash
+GITHUB_PAGES=true npm run build
+```
+
+That environment variable enables the GitHub Pages `basePath` and `assetPrefix` only during deployment.
+
 ## Demo Data Guide
 
 The app includes local demo data controls for presentation reliability.
